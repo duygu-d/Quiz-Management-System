@@ -23,14 +23,15 @@ public final class CSVFile {
         }
     }
 
-    public static void createOneLineRecord(String path,String[] objectProperties) throws Exception {
+    public static void createRecord(String path,String objectToString) throws Exception {
+        String[] objectProperties = getObjectProperties(objectToString);
         List<String[]> oldCsvFileRecords = readCSVfile(path);
         if (!(oldCsvFileRecords.isEmpty())){
             oldCsvFileRecords.add(objectProperties);
             writeCSVdata(oldCsvFileRecords,path);
         }
         else{
-            createCSVfirstRecord(path,objectProperties);
+            createCSVfirstRecord(path,objectToString);
         }
     }
 
@@ -51,8 +52,8 @@ public final class CSVFile {
         }
     }*/
 
-    public static void createCSVfirstRecord(String path, String[] objectProperties){
-
+    private static void createCSVfirstRecord(String path, String objectToString){
+        String[] objectProperties = getObjectProperties(objectToString);
         List<String[]> csvData = createCSVdata(objectProperties);
         writeCSVdata(csvData,path);
     }
@@ -64,6 +65,10 @@ public final class CSVFile {
         catch (IOException e){
             e.fillInStackTrace();
         }
+    }
+    private static String[] getObjectProperties(String objectToString){
+        String[] properties = objectToString.split(" ");
+        return properties;
     }
     private static List<String[]> createCSVdata(String[] objectProperties){
         System.out.println("Enter columns' count: ");

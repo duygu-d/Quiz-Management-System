@@ -21,7 +21,7 @@ public abstract class User {
         return id;
     }
 
-    public void setId(String id) {
+    private void setId(String id) {
         this.id = id;
     }
 
@@ -39,5 +39,10 @@ public abstract class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @java.lang.Override
+    public java.lang.String toString() {
+        return id + ' ' + username + ' ' + password;
     }
 }
