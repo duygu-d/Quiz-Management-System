@@ -3,11 +3,13 @@ package org.quiz;
 public abstract class User {
     private String id;
     private String username;
-    private String password;
+    private String passwordSalt;
+    private String hashedPassword;
 
-    public User(String id, String username, String password) {
+    public User(String id, String username, String passwordSalt,String hashedPassword) {
         this.username = username;
-        this.password = password;
+        this.passwordSalt = passwordSalt;
+        this.hashedPassword = hashedPassword;
         this.id = id;
     }
 
@@ -27,16 +29,25 @@ public abstract class User {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     @java.lang.Override
     public java.lang.String toString() {
-        return id + ' ' + username + ' ' + password;
+        return id + ' ' + username + ' ' + passwordSalt+' '+hashedPassword;
+    }
+
+    public String getPasswordSalt() {
+        return passwordSalt;
+    }
+
+    private void setPasswordSalt(String passwordSalt) {
+        this.passwordSalt = passwordSalt;
+    }
+
+    public String getHashedPassword() {
+        return hashedPassword;
+    }
+
+    private void setHashedPassword(String hashedPassword) {
+        this.hashedPassword = hashedPassword;
     }
 }

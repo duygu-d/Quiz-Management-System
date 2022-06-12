@@ -51,11 +51,12 @@ public final class Menu {
                 printRowSeparator();
                 Register.createNewNormalUser();
                 printRowSeparator();
+                break;
         }
 
     }
 
-    public static void generateASCIIart(String text) {
+    private static void generateASCIIart(String text) {
         BufferedImage image = new BufferedImage(width, height, 1);
         Graphics g = image.getGraphics();
         g.setFont(new Font("SansSerif", 0, 13));
@@ -77,7 +78,7 @@ public final class Menu {
 
     }
 
-    public static void printRowSeparator() {
+    private static void printRowSeparator() {
         System.out.println("\n" + StringUtils.repeat('_', width) + "\n");
     }
 }

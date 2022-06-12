@@ -1,4 +1,2 @@
-"user_id","username","password"
-"adminec7a730e-b0b8-4c5b-a286-0c92dbe695b6","superAdmin","superAdmin123"
-"6018d405-f460-4300-88e8-db85149f24c7","user","user123"
-"admin3847f913-19e5-45d0-affd-0ce6f82d3ac0","admin","Admin_123"
+"user_id","username","pass_salt","hashed_pass"
+"1d76e3d5-8ba2-4ca2-9357-a33ba5095999","user","yNC44+c3sh7iyRnpQv+isQ==","9485b77c1e762efce2d4b5a192a3bc207bbb5278b1a7af915e649ac6ea4245d5aa042792aef5902b0369d18c7b62ef150f66399d52b21d52b3fcd45e40eb6060"
