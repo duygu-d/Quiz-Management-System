@@ -1,5 +1,6 @@
 package org.quiz;
 
+import java.util.Base64;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -72,5 +73,19 @@ public final class Validator {
             }
         }
         return Integer.parseInt(input);
+    }
+
+    public static void validUserPassword(String password, User user){
+       String userPass = user.getHashedPassword();
+       byte[] salt = SecureUtils.decodeSaltToByteArr(user.getPasswordSalt());
+       String hashedPass = SecureUtils.getSecurePassword(password,salt);
+
+        while(!(userPass.equals(hashedPass))){
+            System.out.println("The password you entered is incorrect!");
+            System.out.print("Please try again: ");
+            Scanner scanner = new Scanner(System.in);
+            password = validatePassword(scanner.nextLine());
+            hashedPass = SecureUtils.getSecurePassword(password,salt);
+        }
     }
 }

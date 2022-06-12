@@ -1,8 +1,8 @@
 package org.quiz;
 
 public class Administrator extends User{
-    public Administrator(String id, String username, String password) {
-        super(id, username, password);
+    public Administrator(String id, String username, String passwordSalt,String hashedPassword) {
+        super(id, username, passwordSalt, hashedPassword);
     }
 
     public void createQuiz() {

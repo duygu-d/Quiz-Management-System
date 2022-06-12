@@ -1,11 +1,16 @@
 package org.quiz;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public final class Register {
     private final static String path = "C:\\Users\\Laptop\\Desktop\\Talk to me Java\\QuizManagementSystem_\\Quiz-Management-System\\src\\main\\resources\\users.csv";
+
     private Register() {
     }
 
@@ -28,7 +33,9 @@ public final class Register {
                     System.out.print("Enter new password: ");
                     String password = scanner.nextLine();
                     password = Validator.validatePassword(password);
-                    User newUser = new NormalUser(Guid.GenerateGuid(), username, password);
+                    String passSalt = SecureUtils.encodeSaltToString(SecureUtils.getSalt());
+                    String hashedPass = SecureUtils.getSecurePassword(password,SecureUtils.decodeSaltToByteArr(passSalt));
+                    User newUser = new NormalUser(Guid.GenerateGuid(), username, passSalt, hashedPass);
 
                     CSVFile.createRecord(path, newUser.toString());
 
@@ -63,7 +70,9 @@ public final class Register {
                     System.out.print("Enter new password: ");
                     String password = scanner.nextLine();
                     password = Validator.validatePassword(password);
-                    User newAdmin = new Administrator(Guid.GenerateAdminGuid(), username, password);
+                    String passSalt = SecureUtils.encodeSaltToString(SecureUtils.getSalt());
+                    String hashedPass = SecureUtils.getSecurePassword(password,SecureUtils.decodeSaltToByteArr(passSalt));
+                    User newAdmin = new Administrator(Guid.GenerateAdminGuid(), username, passSalt, hashedPass);
 
                     CSVFile.createRecord(path, newAdmin.toString());
 
@@ -89,11 +98,11 @@ public final class Register {
         for (int i = 1; i < records.size();i++){
             String[] properties = records.get(i);
             if (properties[0].contains("admin")){
-                User administrator = new Administrator(properties[0],properties[1],properties[2]);
+                User administrator = new Administrator(properties[0],properties[1],properties[2],properties[3]);
                 allUsers.add(administrator);
             }
             else{
-                User normalUser = new NormalUser(properties[0],properties[1],properties[2]);
+                User normalUser = new NormalUser(properties[0],properties[1],properties[2],properties[3]);
                 allUsers.add(normalUser);
             }
         }

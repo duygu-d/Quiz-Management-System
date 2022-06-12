@@ -18,12 +18,15 @@ public final class Login {
 
         System.out.print("Enter your username: ");
         String username = scanner.nextLine();
+        username = Validator.validateUsername(username);
 
         System.out.print("Enter your password: "); //TODO: find a way to mask the password input
         String password = scanner.nextLine();
+        password = Validator.validatePassword(password);
 
         for (User user:allUsers) {
-            if (user.getUsername().equals(username) && user.getPassword().equals(password)){
+            if (user.getUsername().equals(username)){
+                Validator.validUserPassword(password,user);
                 loggedUser = user;
                 break;
             }
@@ -34,7 +37,8 @@ public final class Login {
             return loggedUser;
         }
         else{
-            throw new NullPointerException("User "+username+" does not exist!");
+            System.out.println("User "+username+" does not exist!");
+            return null;
         }
     }
 
@@ -44,11 +48,11 @@ public final class Login {
         for (int i = 1; i < records.size();i++){
             String[] properties = records.get(i);
             if (properties[0].contains("admin")){
-                User administrator = new Administrator(properties[0],properties[1],properties[2]);
+                User administrator = new Administrator(properties[0],properties[1],properties[2],properties[3]);
                 allUsers.add(administrator);
             }
             else{
-                User normalUser = new NormalUser(properties[0],properties[1],properties[2]);
+                User normalUser = new NormalUser(properties[0],properties[1],properties[2],properties[3]);
                 allUsers.add(normalUser);
             }
         }
