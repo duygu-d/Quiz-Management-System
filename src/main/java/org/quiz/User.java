@@ -1,14 +1,8 @@
 package org.quiz;
 
-import com.opencsv.bean.CsvBindByName;
-import com.opencsv.bean.CsvBindByPosition;
-
 public abstract class User {
-    @CsvBindByPosition(position = 0)
     private String id;
-    @CsvBindByPosition(position = 1)
     private String username;
-    @CsvBindByPosition(position = 2)
     private String password;
 
     public User(String id, String username, String password) {

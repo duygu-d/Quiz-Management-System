@@ -15,6 +15,10 @@ import java.util.Scanner;
 
 public final class CSVFile {
 
+
+    private CSVFile() {
+    }
+
     public static List<String[]> readCSVfile(String path) throws Exception{
         try (CSVReader reader = new CSVReader(new FileReader(path))) {
             List<String[]> records = reader.readAll();
@@ -34,23 +38,6 @@ public final class CSVFile {
             createCSVfirstRecord(path,objectToString);
         }
     }
-
-    /*public static List<User> ConvertCSVtoObject(String path) throws IOException {
-        try {
-
-            List<User> beans = new CsvToBeanBuilder(new FileReader(path))
-                    .withType(User.class)
-                    .build()
-                    .parse();
-
-            beans.forEach(System.out::println);
-            return beans;
-
-        }
-        catch (IOException e){
-            throw new IOException();
-        }
-    }*/
 
     private static void createCSVfirstRecord(String path, String objectToString){
         String[] objectProperties = getObjectProperties(objectToString);
