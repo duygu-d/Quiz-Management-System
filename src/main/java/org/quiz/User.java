@@ -39,7 +39,7 @@ public abstract class User {
         return passwordSalt;
     }
 
-    private void setPasswordSalt(String passwordSalt) {
+    protected void setPasswordSalt(String passwordSalt) {
         this.passwordSalt = passwordSalt;
     }
 
@@ -47,7 +47,7 @@ public abstract class User {
         return hashedPassword;
     }
 
-    private void setHashedPassword(String hashedPassword) {
+    protected void setHashedPassword(String hashedPassword) {
         this.hashedPassword = hashedPassword;
     }
 }

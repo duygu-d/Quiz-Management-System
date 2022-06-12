@@ -25,7 +25,7 @@ public final class Login {
         password = Validator.validatePassword(password);
 
         for (User user:allUsers) {
-            if (user.getUsername().equals(username) /*&& user.getHashedPassword().equals(SecureUtils.getSecurePassword(password,SecureUtils.decodeSaltToByteArr(user.getPasswordSalt())))*/){
+            if (user.getUsername().equals(username)){
                 Validator.validUserPassword(password,user);
                 loggedUser = user;
                 break;
