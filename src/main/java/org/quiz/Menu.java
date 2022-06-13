@@ -8,6 +8,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
+import java.util.List;
 import java.util.Scanner;
 import org.apache.commons.lang3.StringUtils;
 import org.quiz.Login;
@@ -22,6 +23,8 @@ public final class Menu {
     }
 
     public static void MainMenu() throws Exception {
+
+
         generateASCIIart("W e l c o m e!");
         printRowSeparator();
         System.out.println("LOGIN TO YOUR ACCOUNT AND DEEP DIVE INTO QUIZIELAND!");
@@ -44,7 +47,21 @@ public final class Menu {
                 break;
             case 1:
                 printRowSeparator();
-                Login.login();
+                User loggedUser = Login.login();
+                System.out.println("Choose a quiz to add a question to: ");
+
+//                Quiz.initializeCSVQuiz();
+//                QnA.CSV_QnA();
+
+                if (loggedUser instanceof Administrator) {
+                    Administrator loggedAdmin = (Administrator) loggedUser;
+                    String chosenQuizID = scanner.nextLine();
+                    List<Quiz> allQuizzes = Quiz.getAllQuizzes();
+                    Quiz currentQuiz = allQuizzes.get(Integer.parseInt(chosenQuizID) - 1);
+                    loggedAdmin.addQuestions(currentQuiz, 1);
+                }
+//                loggedAdmin.addQuestions(currentQuiz, 1);
+//                Login.login();
                 printRowSeparator();
                 break;
             case 2:

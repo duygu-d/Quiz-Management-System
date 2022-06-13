@@ -1,10 +1,15 @@
 package org.quiz;
 
+import java.util.Scanner;
+
 public abstract class User {
+
+    public final static String path = "E:\\Valio\\LatestIteration\\Quiz-Management-System\\target\\classes\\users.csv";
     private String id;
     private String username;
     private String passwordSalt;
     private String hashedPassword;
+    protected Scanner scanner = new Scanner(System.in);
 
     public User(String id, String username, String passwordSalt,String hashedPassword) {
         this.username = username;
@@ -12,6 +17,8 @@ public abstract class User {
         this.hashedPassword = hashedPassword;
         this.id = id;
     }
+
+
 
     public String getId() {
         return id;

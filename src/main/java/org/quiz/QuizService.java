@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class QuizService{
-    private final static String path = "C:\\Users\\Laptop\\Desktop\\Talk to me Java\\QuizManagementSystem_\\Quiz-Management-System\\src\\main\\resources\\users.csv";
+    private final static String path = "E:\\Valio\\LatestIteration\\Quiz-Management-System\\target\\classes\\users.csv";
 
     private QuizService() {
     }
@@ -26,4 +26,36 @@ public final class QuizService{
 
         return allUsers;
     }
+
+    public static List<NormalUser> getAllNormalUsers() throws Exception {
+        List<String[]> records = CSVFile.readCSVfile(path);
+        List<NormalUser> allNormalUsers = new ArrayList<>();
+        for (int i = 1; i < records.size(); i++) {
+            String[] properties = records.get(i);
+            if (properties[0].contains("admin")) {
+                continue;
+            }
+            else{
+                NormalUser normalUser = new NormalUser(properties[0], properties[1], properties[2], properties[3]);
+                allNormalUsers.add(normalUser);
+            }
+        }
+
+        return allNormalUsers;
+    }
+
+    public static List<Administrator> getAllAdminUsers() throws Exception {
+        List<String[]> records = CSVFile.readCSVfile(path);
+        List<Administrator> allAdminUsers = new ArrayList<>();
+        for (int i = 1; i < records.size(); i++) {
+            String[] properties = records.get(i);
+            if (properties[0].contains("admin")) {
+                Administrator administrator = new Administrator(properties[0], properties[1], properties[2], properties[3]);
+                allAdminUsers.add(administrator);
+            }
+        }
+
+        return allAdminUsers;
+    }
+
 }
