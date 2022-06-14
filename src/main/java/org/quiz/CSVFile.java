@@ -80,8 +80,15 @@ public final class CSVFile {
         }
     }
     private static String[] getObjectProperties(String objectToString){
-        String[] properties = objectToString.split(" ");
-        return properties;
+
+        if (objectToString.contains(";")){
+
+            return objectToString.split(";");
+        }
+        else {
+
+            return objectToString.split(" ");
+        }
     }
     private static List<String[]> createCSVdata(String[] objectProperties){
         System.out.println("Enter columns' count: ");

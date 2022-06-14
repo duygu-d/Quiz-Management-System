@@ -23,18 +23,13 @@ public class Administrator extends User{
         CSVFile.createRecord(Quiz.quizCSVpath, newQuiz.toString());
 
         System.out.println("How many questions do you wish to add?: ");
-        int questionsAddAmount = scanner.nextInt();
+        String input = scanner.nextLine();
+        int questionsAddAmount = Validator.validateQuestionsCount(input,newQuiz);
 
         addQuestions(newQuiz, questionsAddAmount);
     }
 
-    public void addQuestions(Quiz quiz, int questionAmount) throws Exception { //woodchopper logic
-//        System.out.println("To which quiz do you want to add questions?: ");
-//        String quizIDtoAdd = scanner.nextLine();
-//        Quiz quiz = new Quiz(quizIDtoAdd);
-//        System.out.println("How many questions do you want to add?: ");
-//        questionAmount = scanner.nextInt();   IN THE MENU
-
+    public void addQuestions(Quiz quiz, int questionAmount) throws Exception {
        List<QnA> allQnAs = QuizService.getAllQuestionsOfQuiz(quiz);
 
         for (int i =0; i<questionAmount;i++){

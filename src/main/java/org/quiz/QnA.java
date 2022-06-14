@@ -27,11 +27,6 @@ public class QnA {
         this.WrongAnswer2 = wrongAnswer2;
     }
 
-
-
-
-
-
     public static void CSV_QnA () {
         File file = new File(QnACSVpath);
 
@@ -113,7 +108,7 @@ public class QnA {
 
     @Override
     public String toString() {
-        return questionID + ' ' +
-                quizID + ' ' + question + ' ' + correctAnswer + ' ' + WrongAnswer1 + ' ' + WrongAnswer2;
+        return questionID + ';' +
+                quizID + ';' + question + ';' + correctAnswer + ';' + WrongAnswer1 + ';' + WrongAnswer2;
     }
 }

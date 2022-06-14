@@ -59,7 +59,12 @@ public final class Menu {
                     List<Quiz> allQuizzes = QuizService.getAllQuizzes();
                     if (!allQuizzes.isEmpty()){
                         Quiz currentQuiz = allQuizzes.get(Integer.parseInt(chosenQuizID) - 1);
-                        loggedAdmin.addQuestions(currentQuiz, 1);
+
+                        System.out.println("How many questions do you wish to add?: ");
+                        Scanner inputScanner = new Scanner(System.in);
+                        String inputQnA = inputScanner.nextLine();
+                        int questionCount = Validator.validateQuestionsCount(inputQnA, currentQuiz);
+                        loggedAdmin.addQuestions(currentQuiz, questionCount);
                     }
                     else{
                         loggedAdmin.createQuiz();
