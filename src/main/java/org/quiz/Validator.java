@@ -75,6 +75,25 @@ public final class Validator {
         return Integer.parseInt(input);
     }
 
+    public static int validateHeadersCount(String input){
+        boolean isValidInput = false;
+        while (!isValidInput){
+            String regex = "^[1]?[0-9]|20$";
+            Pattern pattern = Pattern.compile(regex);
+            Matcher matcher = pattern.matcher(input);
+
+            if (matcher.matches()){
+                isValidInput = true;
+            }
+            else{
+                System.out.println("Please enter valid headers' count!");
+                System.out.print("Enter count: ");
+                Scanner scanner = new Scanner(System.in);
+                input = scanner.nextLine();
+            }
+        }
+        return Integer.parseInt(input);
+    }
     public static void validUserPassword(String password, User user){
        String userPass = user.getHashedPassword();
        byte[] salt = SecureUtils.decodeSaltToByteArr(user.getPasswordSalt());

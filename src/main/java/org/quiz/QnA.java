@@ -10,13 +10,12 @@ import java.util.List;
 
 public class QnA {
 
-    public static final String QnACSVpath = "E:\\Valio\\LatestIteration\\Quiz-Management-System\\target\\classes\\QnA.csv";
+    public static final String QnACSVpath = "C:\\Users\\Laptop\\Desktop\\Нова папка (2)\\Quiz-Management-System\\target\\classes\\QnA.csv";
     public String questionID;
     public String quizID;
     public String question;
     public String correctAnswer;
     public String WrongAnswer1;
-
     public String WrongAnswer2;
 
     public QnA(String questionID, String quizID, String question, String correctAnswer, String wrongAnswer1, String wrongAnswer2) {
@@ -53,21 +52,6 @@ public class QnA {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public static List<QnA> getAllQuestionsOfQuiz(Quiz quiz) throws Exception {
-        String quizID = quiz.getQuizID();
-        List<String[]> records = CSVFile.readCSVfile(QnACSVpath);
-        List<QnA> allQnA_inQuiz = new ArrayList<>();
-        for (int i = 1; i < records.size(); i++) {
-
-            String[] properties = records.get(i);
-            QnA currentQnA = new QnA(properties[0], properties[1], properties[2], properties[3], properties[4], properties[5]);
-            if (currentQnA.quizID.equals(quiz.getQuizID())) {
-                allQnA_inQuiz.add(currentQnA);
-            }
-        }
-        return allQnA_inQuiz;
     }
 
     public static void printQnA(QnA questions) { // FIND HOW TO SHUFFLE CORRECTS
@@ -125,5 +109,11 @@ public class QnA {
 
     public void setWrongAnswer2(String wrongAnswer2) {
         WrongAnswer2 = wrongAnswer2;
+    }
+
+    @Override
+    public String toString() {
+        return questionID + ' ' +
+                quizID + ' ' + question + ' ' + correctAnswer + ' ' + WrongAnswer1 + ' ' + WrongAnswer2;
     }
 }

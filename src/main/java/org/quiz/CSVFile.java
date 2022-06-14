@@ -86,7 +86,8 @@ public final class CSVFile {
     private static List<String[]> createCSVdata(String[] objectProperties){
         System.out.println("Enter columns' count: ");
         Scanner scanner = new Scanner(System.in);
-        int columnsCount = scanner.nextInt();
+        String input = scanner.nextLine();
+        int columnsCount = Validator.validateHeadersCount(input);
         String[] headers = new String[columnsCount];
         List<String[]> list = new ArrayList<>();
 

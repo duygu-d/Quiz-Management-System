@@ -56,9 +56,15 @@ public final class Menu {
                 if (loggedUser instanceof Administrator) {
                     Administrator loggedAdmin = (Administrator) loggedUser;
                     String chosenQuizID = scanner.nextLine();
-                    List<Quiz> allQuizzes = Quiz.getAllQuizzes();
-                    Quiz currentQuiz = allQuizzes.get(Integer.parseInt(chosenQuizID) - 1);
-                    loggedAdmin.addQuestions(currentQuiz, 1);
+                    List<Quiz> allQuizzes = QuizService.getAllQuizzes();
+                    if (!allQuizzes.isEmpty()){
+                        Quiz currentQuiz = allQuizzes.get(Integer.parseInt(chosenQuizID) - 1);
+                        loggedAdmin.addQuestions(currentQuiz, 1);
+                    }
+                    else{
+                        loggedAdmin.createQuiz();
+                    }
+
                 }
 //                loggedAdmin.addQuestions(currentQuiz, 1);
 //                Login.login();

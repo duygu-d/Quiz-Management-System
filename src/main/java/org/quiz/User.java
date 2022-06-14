@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public abstract class User {
 
-    public final static String path = "E:\\Valio\\LatestIteration\\Quiz-Management-System\\target\\classes\\users.csv";
+    public final static String path = "C:\\Users\\Laptop\\Desktop\\Нова папка (2)\\Quiz-Management-System\\target\\classes\\users.csv";
     private String id;
     private String username;
     private String passwordSalt;

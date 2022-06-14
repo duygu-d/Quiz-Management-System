@@ -13,7 +13,7 @@ public class Quiz {
 
     public String quizID;
     public String genre;
-    public static final String quizCSVpath = "E:\\Valio\\LatestIteration\\Quiz-Management-System\\target\\classes\\quizzes.csv";
+    public static final String quizCSVpath = "C:\\Users\\Laptop\\Desktop\\Нова папка (2)\\Quiz-Management-System\\target\\classes\\quizzes.csv";
 
     public Quiz(String quizID, String genre) {
         this.quizID = quizID;
@@ -22,7 +22,7 @@ public class Quiz {
 
     public static void initializeCSVQuiz() throws Exception {
 
-        List<Quiz> quizList = getAllQuizzes();
+        List<Quiz> quizList = QuizService.getAllQuizzes();
 
         if (quizList.isEmpty()) {
             File file = new File(quizCSVpath);
@@ -51,18 +51,12 @@ public class Quiz {
         }
     }
 
-    public static List<Quiz> getAllQuizzes() throws Exception {
-        List<String[]> records = CSVFile.readCSVfile(quizCSVpath);
-        List<Quiz> allQuizzes = new ArrayList<>();
-        for (int i = 1; i < records.size(); i++){
-            String[] properties = records.get(i);
-            Quiz currentQuiz = new Quiz(properties[0],properties[1]);
-            allQuizzes.add(currentQuiz);
-        }
-        return allQuizzes;
-    }
-
     public String getQuizID() {
         return quizID;
+    }
+
+    @Override
+    public String toString() {
+        return quizID + ' ' + genre;
     }
 }
