@@ -1,0 +1,4 @@
+"question_id","quiz_id","question","correct_answer","wrong_ans_1","wrong_ans_2"
+"234f0eea-6ff6-4402-ae43-12b32221921b","1f20f260-38ac-4258-91de-8ba696e3e5d3","1 + 6 = ?","7","4","8"
+"83f93914-ee4a-44f5-ac18-ec4d5462830e","1f20f260-38ac-4258-91de-8ba696e3e5d3","1 + 3 = ?","4","7","1 + 6 = ?"
+"4b9a6411-ed18-4928-9485-d82f9cacf0bc","1f20f260-38ac-4258-91de-8ba696e3e5d3","1 + 6 = ?","7","32","7"

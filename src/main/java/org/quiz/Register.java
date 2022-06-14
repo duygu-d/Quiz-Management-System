@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public final class Register {
-    private final static String path = "C:\\Users\\Laptop\\Desktop\\Talk to me Java\\QuizManagementSystem_\\Quiz-Management-System\\src\\main\\resources\\users.csv";
+    private final static String path = "C:\\Users\\Laptop\\Desktop\\Нова папка (2)\\Quiz-Management-System\\target\\classes\\users.csv";
 
     private Register() {
     }

@@ -1,7 +1,10 @@
 package org.quiz;
 
+import org.apache.commons.collections.functors.IfClosure;
+
 import java.util.Base64;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -69,6 +72,65 @@ public final class Validator {
                 System.out.println("Please enter valid menu choice!");
                 System.out.print("Enter menu choice: ");
                 Scanner scanner = new Scanner(System.in);
+                input = scanner.nextLine();
+            }
+        }
+        return Integer.parseInt(input);
+    }
+
+    public static int validateHeadersCount(String input){
+        boolean isValidInput = false;
+        while (!isValidInput){
+            String regex = "^[1]?[0-9]|20$";
+            Pattern pattern = Pattern.compile(regex);
+            Matcher matcher = pattern.matcher(input);
+
+            if (matcher.matches()){
+                isValidInput = true;
+            }
+            else{
+                System.out.println("Please enter valid headers' count!");
+                System.out.print("Enter count: ");
+                Scanner scanner = new Scanner(System.in);
+                input = scanner.nextLine();
+            }
+        }
+        return Integer.parseInt(input);
+    }
+
+    public static int validateQuestionsCount(String input,Quiz quiz) throws Exception {
+        int currQuizQnACount = QuizService.getAllQuestionsOfQuiz(quiz).size();
+        Scanner scanner = new Scanner(System.in);
+
+        boolean isValidInput = false;
+        while (!isValidInput){
+            String regex = "^[1-1][0-9]|20$";
+            Pattern pattern = Pattern.compile(regex);
+            Matcher matcher = pattern.matcher(input);
+
+            if (matcher.matches()){
+                int num = Integer.parseInt(input);
+                if (currQuizQnACount != 0 && currQuizQnACount<20){
+                    while (num>(20-currQuizQnACount)){
+                        System.out.print("You have "+currQuizQnACount+" question(s) in the current quiz.\nYou cannot add more than "+(20-currQuizQnACount)+" question(s).\nEnter questions' count you'd like to add: ");
+                        input = scanner.nextLine();
+                        num = Integer.parseInt(input);
+                    }
+                }
+                else{
+                    System.out.println("You already have 20 questions in the quiz. You cannot add more!\n");
+                    break;
+                }
+                isValidInput = true;
+            }
+            else{
+                if (currQuizQnACount !=0){
+                    System.out.print("Invalid input! Questions' count should be a number between 1 and "+(20-currQuizQnACount)+"\n");
+                }
+                else{
+                    System.out.println("Invalid input! Questions' count should be a number between 10 and 20");
+                }
+                System.out.print("Enter count: ");
                 input = scanner.nextLine();
             }
         }
